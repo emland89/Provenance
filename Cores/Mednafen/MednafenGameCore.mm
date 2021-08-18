@@ -1178,9 +1178,13 @@ static size_t update_audio_batch(const int16_t *data, size_t frames)
             case PVLynxButtonB:
                 return [[gamepad buttonA] isPressed]?:[[gamepad buttonY] isPressed]?:[[[gamepad rightThumbstick] left] isPressed]?:[[gamepad leftTrigger] isPressed];
             case PVLynxButtonOption1:
-                return [[gamepad leftShoulder] isPressed];
+                if (gamepad.buttonOptions) {
+                    return gamepad.buttonOptions.pressed;
+                }
+                break;
+                
             case PVLynxButtonOption2:
-                return [[gamepad rightShoulder] isPressed];
+                return gamepad.buttonMenu.pressed;
             default:
                 break;
         }

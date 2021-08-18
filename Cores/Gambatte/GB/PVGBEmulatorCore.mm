@@ -315,8 +315,11 @@ const int GBMap[] = {gambatte::InputGetter::UP, gambatte::InputGetter::DOWN, gam
         (gamepad.buttonA.isPressed || gamepad.buttonY.isPressed) ? gb_pad[0] |= GBMap[PVGBButtonB] : gb_pad[0] &= ~GBMap[PVGBButtonB];
         (gamepad.buttonB.isPressed || gamepad.buttonX.isPressed) ? gb_pad[0] |= GBMap[PVGBButtonA] : gb_pad[0] &= ~GBMap[PVGBButtonA];
 
-        (gamepad.leftShoulder.isPressed || gamepad.leftTrigger.isPressed) ? gb_pad[0] |= GBMap[PVGBButtonSelect] : gb_pad[0] &= ~GBMap[PVGBButtonSelect];
-        (gamepad.rightShoulder.isPressed || gamepad.rightTrigger.isPressed) ? gb_pad[0] |= GBMap[PVGBButtonStart] : gb_pad[0] &= ~GBMap[PVGBButtonStart];
+        gamepad.buttonMenu.isPressed ? gb_pad[0] |= GBMap[PVGBButtonStart] : gb_pad[0] &= ~GBMap[PVGBButtonStart];
+        
+        if (gamepad.buttonOptions) {
+            gamepad.buttonOptions.isPressed ? gb_pad[0] |= GBMap[PVGBButtonSelect] : gb_pad[0] &= ~GBMap[PVGBButtonSelect];
+        }
     }
     else if ([self.controller1 gamepad])
     {

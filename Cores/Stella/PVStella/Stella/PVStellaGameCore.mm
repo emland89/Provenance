@@ -414,10 +414,12 @@ static void writeSaveFile(const char* path, int type)
             _pad[playerIndex][RETRO_DEVICE_ID_JOYPAD_X] = gamepad.buttonX.isPressed || gamepad.buttonY.isPressed || gamepad.leftTrigger.isPressed;
             
             // Reset
-            _pad[playerIndex][RETRO_DEVICE_ID_JOYPAD_START]  = gamepad.rightShoulder.isPressed;
+            _pad[playerIndex][RETRO_DEVICE_ID_JOYPAD_START]  = gamepad.buttonMenu.isPressed;
             
             // Select
-            _pad[playerIndex][RETRO_DEVICE_ID_JOYPAD_SELECT] = gamepad.leftShoulder.isPressed;
+            if (gamepad.buttonOptions) {
+                _pad[playerIndex][RETRO_DEVICE_ID_JOYPAD_SELECT] = gamepad.buttonOptions.isPressed;
+            }
    
             /*
              #define RETRO_DEVICE_ID_JOYPAD_B        0 == JoystickZeroFire1

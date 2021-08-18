@@ -962,8 +962,11 @@ static void FinalizeSamplesAudioCallback(void *)
             S9xReportButton(playerMask | PVSNESButtonTriggerLeft, gamepad.leftShoulder.pressed);
             S9xReportButton(playerMask | PVSNESButtonTriggerRight, gamepad.rightShoulder.pressed);
 
-            S9xReportButton(playerMask | PVSNESButtonStart, gamepad.rightTrigger.pressed);
-            S9xReportButton(playerMask | PVSNESButtonSelect, gamepad.leftTrigger.pressed);
+            S9xReportButton(playerMask | PVSNESButtonStart, gamepad.buttonMenu.pressed);
+            
+            if (gamepad.buttonOptions != nil) {
+                S9xReportButton(playerMask | PVSNESButtonSelect, gamepad.buttonOptions.pressed);
+            }
 
         }
         else if ([controller gamepad])
